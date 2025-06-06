@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { resetAuthState } from "../../features/auth/authSlice";
 import { loginUser } from "../../features/auth/authThunk";
+import { Logo } from "../../components/Logo";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const Login = () => {
   console.log(token, "token");
   useEffect(() => {
     if (isSuccess) {
-      localStorage.setItem("token", token);
+      // localStorage.setItem("token", token);
       toast.success(successMessage);
       navigate("/");
       dispatch(resetAuthState());
@@ -40,10 +41,9 @@ const Login = () => {
     },
   });
   return (
-    <div className="flex flex-col min-h-screen items-center justify-center bg-gradient-to-b from-[#EC9600] to-[#FABB05]">
-      <div className="rounded-full w-52 h-52 bg-[#EC9610] flex items-center justify-center">
-        <img className="w-48 h-20 " src="icon.png" alt="" />
-      </div>
+   <div className=" min-h-screen bg-gradient-to-b from-[#EC9600] to-[#FABB05]">
+      <Logo />
+     <div className="flex items-center justify-center ">
       <div className="p-6 rounded-xl w-full max-w-md  mt-5 ">
         <h2 className="text-3xl font-bold md:text-center mb-10 text-gray-800">
           Login
@@ -95,6 +95,7 @@ const Login = () => {
         </form>
       </div>
     </div>
+   </div>
   );
 };
 

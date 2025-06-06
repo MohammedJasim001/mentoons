@@ -6,7 +6,7 @@ dotenv.config();
 
 const userAuth = async (req, res, next) => {
   try {
-    const token = req.cookies.token;
+    const token = req.cookies.token || req.headers["authorization"]?.split(" ")[1];
     if (!token) {
       const error = new Error("Access denied, token missing!");
       error.statusCode = 401;

@@ -6,6 +6,7 @@ import Login from "./pages/auth/Login";
 import ErrorPage from "./pages/ErrorPage";
 
 function App() {
+
   return (
     <div className="">
       <Routes>

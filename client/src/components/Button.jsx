@@ -14,7 +14,7 @@ const Button = ({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`px-6 py-2 bg-white  rounded-md hover:bg-white/90 transition-all disabled:bg-gray-400 disabled:cursor-not-allowed ${className} `}
+      className={`px-6 py-2 bg-white  rounded-md  transition-all disabled:bg-gray-400 disabled:cursor-not-allowed ${className} `}
       type={type}
       form={form}
       name={name}

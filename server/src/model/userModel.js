@@ -22,6 +22,21 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  sentRequests: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  receivedRequests: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  connections: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  notifications: [
+    {
+      type: { type: String },
+      from: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+      message: String,
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+      isRead: { type: Boolean, default: false },
+    },
+  ],
 });
 
 const User = mongoose.model("User", userSchema);
