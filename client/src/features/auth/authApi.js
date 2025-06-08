@@ -6,3 +6,7 @@ export const registerApi = (userData) => {
 export const loginApi = (userData) => {
   return apiClient.post("/login", userData);
 };
+
+export const logoutApi = () => {
+  return apiClient.post('/logout')
+}

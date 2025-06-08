@@ -18,14 +18,17 @@ export const initializeSocket = (server) => {
     });
 
     socket.on("private_message", async ({ from, to, message }) => {
+      console.log(from, to, message);
       const receiver = await User.findById(to);
 
-      await Message.create({ from, to, message });
+      const savedMessage = await Message.create({ from, to, message });
+      console.log(savedMessage.createdAt,'saveddd')
 
       if (receiver?.socketId) {
         io.to(receiver.socketId).emit("receive_private_message", {
           from,
           message,
+          createdAt: savedMessage.createdAt,
         });
       }
     });
@@ -37,15 +40,13 @@ export const initializeSocket = (server) => {
 
         if (!receiver || !sender) return;
 
-        console.log(receiver.receivedRequests.includes(from),'jalksdjf',receiver.connections.includes(from) );
         if (
           receiver.connections.includes(from) ||
           receiver.receivedRequests.includes(from)
         ) {
-          
           return;
         }
-        console.log(from, to, message, ";alsdkjflkajs");
+        console.log(from, to, message, "message");
         receiver.notifications.push({
           from: from,
           message: message,

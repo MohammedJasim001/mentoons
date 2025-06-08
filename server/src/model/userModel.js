@@ -37,6 +37,15 @@ const userSchema = new mongoose.Schema({
       isRead: { type: Boolean, default: false },
     },
   ],
+  blockedUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  whoBlocked: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  reports: [
+    {
+      reportedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+      reason: { type: String },
+      date: { type: Date, default: Date.now },
+    },
+  ],
 });
 
 const User = mongoose.model("User", userSchema);

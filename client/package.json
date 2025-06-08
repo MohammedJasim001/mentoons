@@ -23,6 +23,7 @@
     "react-router-dom": "^7.6.2",
     "redux": "^5.0.1",
     "socket.io-client": "^4.8.1",
+    "tailwind-scrollbar-hide": "^4.0.0",
     "tailwindcss": "^4.1.8",
     "yup": "^1.6.1"
   },

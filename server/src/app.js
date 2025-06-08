@@ -4,6 +4,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import authRoutes from './routes/authRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import messageRoutes from './routes/messageRoutes.js'
 
 const app = express()
 
@@ -17,6 +18,7 @@ app.use(cookieParser())
 
 app.use('/api',authRoutes)
 app.use('/api',userRoutes)
+app.use('/api',messageRoutes)
 
  
 app.use(globalErrorHandler)

@@ -16,7 +16,6 @@ const Login = () => {
   const { successMessage, isSuccess, error, token, loading } = useSelector(
     (state) => state.auth
   );
-  console.log(token, "token");
   useEffect(() => {
     if (isSuccess) {
       // localStorage.setItem("token", token);

@@ -1,14 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { sentRequest } from "./connectionThunk";
+import { acceptRequest, connections, sentRequest } from "./connectionThunk";
 
 const connectionSlice = createSlice({
   name: "connection",
   initialState: {
-    message: null,
+    createMessage: null,
+    acceptMessage: null,
     error: null,
     loading: false,
+    successMessage: "",
+    success: false,
+    acceptSuccess:false,
+    friends : []
   },
-  reducers: {},
+  reducers: {
+    resetconnectionState: (state) => {
+      (state.createMessage = null),
+        (state.loading = false),
+        (state.error = null),
+        (state.acceptMessage = ""),
+        (state.success = false),
+        (state.successMessage = ""),
+        (state.acceptSuccess = false)
+    },
+  
+  },
   extraReducers: (builder) => {
     builder
       .addCase(sentRequest.pending, (state) => {
@@ -18,13 +34,46 @@ const connectionSlice = createSlice({
       .addCase(sentRequest.fulfilled, (state, action) => {
         state.error = null;
         state.loading = false;
-        state.message = action.payload;
+        state.createMessage = action.payload;
+        state.success = true;
+        state.successMessage = action.payload.message;
       })
       .addCase(sentRequest.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(acceptRequest.pending, (state) => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(acceptRequest.fulfilled, (state, action) => {
+        state.error = null;
+        state.loading = false;
+        state.acceptMessage = action.payload;
+        state.acceptSuccess = true;
+        state.successMessage = action.payload.message;
+      })
+      .addCase(acceptRequest.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(connections.pending, (state) => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(connections.fulfilled, (state, action) => {
+        state.error = null;
+        state.loading = false;
+        state.friends = action.payload
+      })
+      .addCase(connections.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
   },
 });
 
-export default connectionSlice.reducer
+export default connectionSlice.reducer;
+export const { resetconnectionState } = connectionSlice.actions;
