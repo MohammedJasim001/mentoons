@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 const Friends = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { friends } = useSelector((state) => state.connection);
+  const { friends, loading } = useSelector((state) => state.connection);
   const { currentUser, blockMessage, blockSuccess } = useSelector(
     (state) => state.users
   );
@@ -46,6 +46,7 @@ const Friends = () => {
       <div className="flex items-center justify-center mt-10 p-4 bg-white max-w-md border-b border-gray-200 w-full rounded-lg  transition-all duration-300 ">
         <h2 className="text-[#F7941D] text-xl ">My Friends</h2>
       </div>
+      {loading && <div>Loading...</div>}
       {friends?.result?.length === 0 && <div className="mt-10">No friends</div>}
       <ul className="w-full max-w-md bg-white shadow-lg rounded-lg divide-y divide-gray-200 ">
         {friends?.result?.map((user) => (

@@ -18,7 +18,7 @@ const Login = () => {
   );
   useEffect(() => {
     if (isSuccess) {
-      // localStorage.setItem("token", token);
+      localStorage.setItem("token", token);
       toast.success(successMessage);
       navigate("/");
       dispatch(resetAuthState());
