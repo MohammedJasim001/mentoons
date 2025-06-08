@@ -8,6 +8,7 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { blockUser, currentUserThunk } from "../features/user/userThunk";
 import toast from "react-hot-toast";
+import { GrFormPreviousLink } from "react-icons/gr";
 
 const Friends = () => {
   const navigate = useNavigate();
@@ -43,8 +44,9 @@ const Friends = () => {
   return (
     <div className="flex flex-col items-center  min-h-screen bg-gray-100 ">
       <Navbar />
-      <div className="flex items-center justify-center mt-10 p-4 bg-white max-w-md border-b border-gray-200 w-full rounded-lg  transition-all duration-300 ">
-        <h2 className="text-[#F7941D] text-xl ">My Friends</h2>
+      <div className="flex items-center justify-center mt-10 p-4 bg-white max-w-md border-b border-gray-200 w-full rounded-lg  transition-all duration-300 text-[#F7941D]" onClick={()=>navigate(-1)}>
+         <GrFormPreviousLink className="text-2xl " />
+        <h2 className=" text-xl ">My Friends</h2>
       </div>
       {loading && <div>Loading...</div>}
       {friends?.result?.length === 0 && <div className="mt-10">No friends</div>}
