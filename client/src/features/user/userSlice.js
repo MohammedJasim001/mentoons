@@ -17,7 +17,8 @@ const userSlice = createSlice({
     error: null,
     loading: false,
     blockMessage: "",
-    blockSuccess:false
+    blockSuccess:false,
+    
   },
   reducers: {
     resetUserState: (state) => {

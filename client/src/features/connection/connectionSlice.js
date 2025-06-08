@@ -11,7 +11,8 @@ const connectionSlice = createSlice({
     successMessage: "",
     success: false,
     acceptSuccess:false,
-    friends : []
+    friends : [],
+    connectionLoading:false
   },
   reducers: {
     resetconnectionState: (state) => {
@@ -21,7 +22,8 @@ const connectionSlice = createSlice({
         (state.acceptMessage = ""),
         (state.success = false),
         (state.successMessage = ""),
-        (state.acceptSuccess = false)
+        (state.acceptSuccess = false),
+        (state.connectionLoading = false)
     },
   
   },
@@ -61,15 +63,15 @@ const connectionSlice = createSlice({
 
       .addCase(connections.pending, (state) => {
         state.error = null;
-        state.loading = true;
+        state.connectionLoading = true;
       })
       .addCase(connections.fulfilled, (state, action) => {
         state.error = null;
-        state.loading = false;
+        state.connectionLoading = false;
         state.friends = action.payload
       })
       .addCase(connections.rejected, (state, action) => {
-        state.loading = false;
+        state.connectionLoading = false;
         state.error = action.payload;
       });
   },

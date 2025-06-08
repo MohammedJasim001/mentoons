@@ -13,7 +13,7 @@ import { GrFormPreviousLink } from "react-icons/gr";
 const Friends = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { friends, loading } = useSelector((state) => state.connection);
+  const { friends, connectionLoading } = useSelector((state) => state.connection);
   const { currentUser, blockMessage, blockSuccess } = useSelector(
     (state) => state.users
   );
@@ -48,7 +48,7 @@ const Friends = () => {
          <GrFormPreviousLink className="text-2xl " />
         <h2 className=" text-xl ">My Friends</h2>
       </div>
-      {loading && <div>Loading...</div>}
+      {connectionLoading && <div>Loading...</div>}
       {friends?.result?.length === 0 && <div className="mt-10">No friends</div>}
       <ul className="w-full max-w-md bg-white shadow-lg rounded-lg divide-y divide-gray-200 ">
         {friends?.result?.map((user) => (
