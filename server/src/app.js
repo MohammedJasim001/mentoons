@@ -5,11 +5,14 @@ import cookieParser from 'cookie-parser'
 import authRoutes from './routes/authRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import messageRoutes from './routes/messageRoutes.js'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const app = express()
 
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin: process.env.FRONTEND_URL ,
     credentials:true
 }))
 app.use(express.json())

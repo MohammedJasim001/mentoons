@@ -13,7 +13,6 @@ import socket from "../utils/socket";
 import toast from "react-hot-toast";
 import { resetconnectionState } from "../features/connection/connectionSlice";
 import {
-  removeRequest,
   updateAcceptedRequest,
   updateSentRequest,
 } from "../features/user/userSlice";
@@ -87,6 +86,7 @@ const Home = () => {
       dispatch(updateSentRequest(receiver._id));
     }
     dispatch(resetconnectionState());
+    // dispatch(currentUserThunk())
   };
 
   const handleAccept = async (sender) => {
@@ -98,7 +98,6 @@ const Home = () => {
     const res = await dispatch(acceptRequest(sender._id));
     if (res.meta.requestStatus === "fulfilled") {
       dispatch(updateAcceptedRequest(sender._id));
-      dispatch(removeRequest(sender._id));
     }
     dispatch(resetconnectionState());
     dispatch(currentUserThunk());

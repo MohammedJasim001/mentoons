@@ -6,9 +6,7 @@ import { FaUser } from "react-icons/fa";
 import Button from "../components/Button";
 import socket from "../utils/socket";
 import { acceptRequest } from "../features/connection/connectionThunk";
-import {
-  updateAcceptedRequest,
-} from "../features/user/userSlice";
+import { updateAcceptedRequest } from "../features/user/userSlice";
 import { resetconnectionState } from "../features/connection/connectionSlice";
 
 const RequestModal = ({ isOpen, onClose, currentUser }) => {
@@ -21,16 +19,12 @@ const RequestModal = ({ isOpen, onClose, currentUser }) => {
       dispatch(requestedUsers());
     }
   }, [dispatch, requestUsers]);
-  
 
   if (!isOpen) return null;
 
   if (loading) {
     return <div>loading...</div>;
   }
-
-
-
 
   const handleAccept = async (sender) => {
     socket.emit("connection_request", {
@@ -43,7 +37,7 @@ const RequestModal = ({ isOpen, onClose, currentUser }) => {
       dispatch(updateAcceptedRequest(sender._id));
     }
     dispatch(resetconnectionState());
-    dispatch(currentUserThunk())
+    dispatch(currentUserThunk());
 
     console.log(acceptMessage, "message");
   };
