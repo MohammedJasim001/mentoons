@@ -17,6 +17,7 @@ const RequestModal = ({ isOpen, onClose, currentUser }) => {
   useEffect(() => {
     if (!requestUsers || requestUsers.length === 0) {
       dispatch(requestedUsers());
+      dispatch(currentUserThunk())
     }
   }, [dispatch, requestUsers]);
 

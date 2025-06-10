@@ -17,6 +17,7 @@ const ProfileModal = ({ isOpen, onClose, currentUser }) => {
       toast.error(error);
     }
     if (isSuccess) {
+      localStorage.removeItem('token')
       toast.success(successMessage);
       window.location.href = "/login";
     }
